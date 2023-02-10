@@ -1,0 +1,22 @@
+{
+  "name": "day8-web_scrapping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piter765/day8-web_scrapping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piter765/day8-web_scrapping/issues"
+  },
+  "homepage": "https://github.com/piter765/day8-web_scrapping#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

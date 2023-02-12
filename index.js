@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: false}));
 
 
 app.listen(PORT, () => {
-    console.log("listening on PORT" + PORT);
+    console.log("listening on PORT " + PORT);
 });
 
 app.use('/api/v1', getRoutes);

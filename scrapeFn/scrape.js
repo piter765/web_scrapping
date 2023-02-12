@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const fs = require("fs");
 const data = {
     list: []
 }
@@ -14,12 +15,21 @@ async function main(skill) {
         waitUntil: 'networkidle0'
     });
     
+    // const pdf = page.pdf({
+    //     path: "",
+    //     format: "A4"
+    // })
+    // const screenshot = page.screenshot({
+    //     path: "",
+    //     fullPage: true
+    // })
+
     const jobData = await page.evaluate(async (data) => {
         const items = document.querySelectorAll('td.resultContent');
         items.forEach((item, index) => {
             const title = item.querySelector('h2.jobTitle>a')?.innerText;
             const link = item.querySelector('h2.jobTitle>a')?.href;
-            const salary = item.querySelector('div.metadata.salary-snippet-container > div')?.innerText;
+            const salary = item.querySelector('div.metadata.salary-snippet-container>div')?.innerText;
             const companyName = item.querySelector('span.companyName')?.innerText;
         
         if(salary === null) {
@@ -30,11 +40,18 @@ async function main(skill) {
             salary,
             companyName,
             link
-        })
-        })
-    });
-    return data;
+            })
+        });
+        return data;
+    }, data);
+    
+    let response = await jobData;
+    let json = await JSON.stringify(jobData,null,2);
+    fs.writeFile('job.json',json, 'utf-8', () => {
+        console.log("Written in job.json");
+    })
     browser.close();
+    return response;
 };
 
 module.exports = main;
